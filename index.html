@@ -203,7 +203,9 @@
     .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
     .exp-role { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; color: var(--color-text-primary); margin-bottom: 4px; }
     .exp-company { font-size: var(--text-base); color: var(--color-accent); font-weight: 500; }
-    .exp-date { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-hint); text-align: right; }
+    .exp-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; margin-left: auto; }
+    .exp-meta-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: flex-end; }
+    .exp-date { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-hint); text-align: right; white-space: nowrap; }
     .exp-list li { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.75; padding: 8px 0 8px 20px; position: relative; border-bottom: 1px solid var(--color-border); }
     .exp-list li:last-child { border-bottom: none; padding-bottom: 0; }
     .exp-list li::before { content: ''; position: absolute; left: 0; top: 17px; width: 8px; height: 1.5px; background: var(--color-accent); }
@@ -275,7 +277,9 @@
       .btn-white, .btn-outline-white { width: 100%; max-width: 300px; justify-content: center; }
       .section-header { margin-bottom: 32px; }
       .exp-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-      .exp-header > div:last-child { width: 100%; align-items: flex-end !important; }
+      .exp-meta { width: 100%; margin-left: 0; align-items: flex-start; }
+      .exp-meta-row { justify-content: flex-start; gap: 12px; }
+      .exp-date { text-align: left; }
     }
 
     @media (max-width: 480px) {
@@ -500,10 +504,12 @@
               <div class="exp-role">Data Analyst Intern</div>
               <div class="exp-company">Unified Mentor Pvt Ltd · Remote</div>
             </div>
-            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;margin-left:auto;">
-              <div class="exp-date">Mar 2025 – Present</div>
-              <a href="https://tiny.cc/ect0101" class="project-link" style="white-space:nowrap;" target="_blank" rel="noopener noreferrer">Live App<span class="link-arrow"><svg viewBox="0 0 13 13" fill="none" style="width:11px;height:11px;"><path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-              <a href="https://github.com/faheem-afk/Ecommerce-Dashboard" class="project-link" style="white-space:nowrap;" target="_blank" rel="noopener noreferrer">GitHub<span class="link-arrow"><svg viewBox="0 0 13 13" fill="none" style="width:11px;height:11px;"><path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+            <div class="exp-meta">
+              <div class="exp-meta-row">
+                <a href="https://tiny.cc/ect0101" class="project-link" style="white-space:nowrap;" target="_blank" rel="noopener noreferrer">Live App<span class="link-arrow"><svg viewBox="0 0 13 13" fill="none" style="width:11px;height:11px;"><path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+                <a href="https://github.com/faheem-afk/Ecommerce-Dashboard" class="project-link" style="white-space:nowrap;" target="_blank" rel="noopener noreferrer">GitHub<span class="link-arrow"><svg viewBox="0 0 13 13" fill="none" style="width:11px;height:11px;"><path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+                <div class="exp-date">Mar 2025 – Present</div>
+              </div>
             </div>
           </div>
           <ul class="exp-list">
@@ -612,24 +618,35 @@
           projectObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.06 });
+    }, {
+      threshold: 0.14,
+      rootMargin: '0px 0px -10% 0px'
+    });
     projectCards.forEach(card => projectObserver.observe(card));
 
     const fadeObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          const revealDelay = entry.target.dataset.revealDelay || 0;
+          setTimeout(() => entry.target.classList.add('visible'), Number(revealDelay));
           fadeObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.07 });
+    }, {
+      threshold: 0.18,
+      rootMargin: '0px 0px -12% 0px'
+    });
 
     document.querySelectorAll('#hero .fade-up').forEach((el, i) => {
       setTimeout(() => el.classList.add('visible'), 180 + i * 200);
     });
 
-    fadeEls.forEach(el => {
+    fadeEls.forEach((el, i) => {
       if (!el.closest('#hero') && !el.classList.contains('project-card')) {
+        const parentSection = el.closest('.section');
+        const siblings = parentSection ? Array.from(parentSection.querySelectorAll('.fade-up:not(.project-card)')) : [];
+        const siblingIndex = siblings.indexOf(el);
+        el.dataset.revealDelay = siblingIndex > -1 ? Math.min(siblingIndex * 90, 270) : 0;
         fadeObserver.observe(el);
       }
     });
