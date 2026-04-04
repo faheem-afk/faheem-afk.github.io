@@ -88,14 +88,16 @@
 
     .fade-up {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+      transform: translateY(40px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
     }
     .fade-up.visible       { opacity: 1; transform: translateY(0); }
     .fade-up.delay-1       { transition-delay: 0.10s; }
-    .fade-up.delay-2       { transition-delay: 0.20s; }
-    .fade-up.delay-3       { transition-delay: 0.30s; }
-    .fade-up.delay-4       { transition-delay: 0.45s; }
+    .fade-up.delay-2       { transition-delay: 0.22s; }
+    .fade-up.delay-3       { transition-delay: 0.38s; }
+    .fade-up.delay-4       { transition-delay: 0.54s; }
     @media (prefers-reduced-motion: reduce) {
       .fade-up, .fade-up.visible { opacity: 1; transform: none; transition: none; }
       * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -381,6 +383,43 @@
           <article class="project-card fade-up" id="proj-1">
             <div class="project-card-face" role="button" tabindex="0" aria-expanded="false" aria-controls="case-1" onclick="toggleCase('proj-1')" onkeydown="handleCardKey(event,'proj-1')">
               <div class="project-card-body">
+                <p class="project-eyebrow">Supply Chain · Statistical Modelling · Dashboard</p>
+                <h3 class="project-title">Nassau Candy Distributor — Shipping Route Analytics</h3>
+                <p class="project-desc">Full-cycle supply chain analytics project — analysed 8,549 shipments across 5 factories, 4 regions, and 16 routes. Built a composite efficiency score combining lead time and delivery variability, with a custom Z vs t-distribution confidence framework applied across all route aggregations.</p>
+                <div class="project-metrics">
+                  <span class="metric">8,549 shipments</span>
+                  <span class="metric">16 routes ranked</span>
+                  <span class="metric">5 factories · 4 regions</span>
+                </div>
+                <div class="project-tools">
+                  <span class="chip chip-accent">Python</span><span class="chip chip-accent">Pandas</span><span class="chip chip-accent">SciPy</span>
+                  <span class="chip chip-gray">Plotly</span><span class="chip chip-gray">Streamlit</span><span class="chip chip-gray">Statistical Modelling</span>
+                </div>
+              </div>
+              <div class="project-card-actions">
+                <a href="https://candyshipping.streamlit.app/" class="project-link" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">Live app<span class="link-arrow"><svg viewBox="0 0 13 13" fill="none" style="width:11px;height:11px;"><path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+                <a href="https://github.com/faheem-afk/Nassau_Candy_Distribution" class="project-link" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">GitHub<span class="link-arrow"><svg viewBox="0 0 13 13" fill="none" style="width:11px;height:11px;"><path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+                <span class="project-date">Mar - April 2025</span>
+                <button class="expand-btn" onclick="event.stopPropagation(); toggleCase('proj-1')" aria-label="Toggle case study">
+                  <span class="expand-icon"><svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,2.5 4,5.5 7,2.5"/></svg></span>
+                  Case study
+                </button>
+              </div>
+            </div>
+            <div class="case-study" id="case-1" aria-hidden="true">
+              <div class="case-study-inner">
+                <div class="cs-block"><span class="cs-label">Problem</span><p class="cs-text">A distributor shipping confectionery products from 5 factories across the US needed to understand which factory→region and factory→state routes were genuinely efficient — and which were bottlenecks. The challenge was doing this rigorously when some routes had 1,500+ shipments and others had fewer than 20.</p></div>
+                <div class="cs-block"><span class="cs-label">Challenges</span><p class="cs-text">The sample size problem. Applying the same confidence interval logic to a route with 19 shipments as one with 1,524 produces misleading rankings. Every threshold in the analysis also needed to be data-driven — set from the actual percentile distribution of the data, not hardcoded arbitrarily.</p></div>
+                <div class="cs-block cs-block-full"><span class="cs-label">Process</span><p class="cs-process">Data cleaning (corrupted dates, cart-update duplicates, misclassifications) → Three-way merge (orders + products + factories) → Percentile analysis → Custom Z vs t-distribution framework → Efficiency score engineering (speed + consistency) → Route ranking across 6 dimensions → Streamlit dashboard</p></div>
+                <div class="cs-block"><span class="cs-label">Key Insight</span><p class="cs-text">Efficiency is not the same as speed. A composite score combining normalised lead time and delivery variability surfaces routes that are both fast and predictable — the ones a business can actually rely on. Using the upper-bound confidence interval throughout ensures conservative, operationally sound planning.</p></div>
+                <div class="cs-block"><span class="cs-label">Value</span><p class="cs-text">8,549 shipments analysed · 16 factory→region routes ranked · Statistically rigorous confidence framework with automatic Z vs t selection · Real-world data quality issues diagnosed and resolved · Fully interactive Streamlit dashboard with live filters.</p></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card fade-up" id="proj-2">
+            <div class="project-card-face" role="button" tabindex="0" aria-expanded="false" aria-controls="case-2" onclick="toggleCase('proj-2')" onkeydown="handleCardKey(event,'proj-2')">
+              <div class="project-card-body">
                 <p class="project-eyebrow">Forecasting · ML · Deployed</p>
                 <h3 class="project-title">Real Estate Price Forecasting &amp; Recommendation Engine</h3>
                 <p class="project-desc">Scraped 99acres.com, engineered 15+ features, trained an XGBoost model, and deployed a live Streamlit app — with a recommendation engine that surfaces contextually similar properties alongside each prediction. A single-output model turned into a decision-support tool.</p>
@@ -398,13 +437,13 @@
                 <a href="https://realestate-byfaheem.streamlit.app/" class="project-link" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">Live App<span class="link-arrow"><svg viewBox="0 0 13 13" fill="none" style="width:11px;height:11px;"><path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
                 <a href="https://github.com/faheem-afk/Gurgaon-Real-Estate-" class="project-link" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">GitHub<span class="link-arrow"><svg viewBox="0 0 13 13" fill="none" style="width:11px;height:11px;"><path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
                 <span class="project-date">Nov – Dec 2025</span>
-                <button class="expand-btn" onclick="event.stopPropagation(); toggleCase('proj-1')" aria-label="Toggle case study">
+                <button class="expand-btn" onclick="event.stopPropagation(); toggleCase('proj-2')" aria-label="Toggle case study">
                   <span class="expand-icon"><svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,2.5 4,5.5 7,2.5"/></svg></span>
                   Case study
                 </button>
               </div>
             </div>
-            <div class="case-study" id="case-1" aria-hidden="true">
+            <div class="case-study" id="case-2" aria-hidden="true">
               <div class="case-study-inner">
                 <div class="cs-block"><span class="cs-label">Problem</span><p class="cs-text">Property pricing on platforms like 99acres is largely opaque — listings exist but there's no easy way to know whether a price is fair, overpriced, or what comparable alternatives look like. The goal was to build a tool that could take a property's attributes and return both a predicted price and a ranked list of similar properties.</p></div>
                 <div class="cs-block"><span class="cs-label">Challenges</span><p class="cs-text">The real challenge wasn't the model — it was the data. Scraped real estate data is messy in ways that aren't obvious: properties listed in wildly different formats, prices that include or exclude taxes inconsistently, room counts recorded differently across listing types. Getting the features clean enough to be meaningful took most of the project time.</p></div>
@@ -415,8 +454,8 @@
             </div>
           </article>
 
-          <article class="project-card fade-up" id="proj-2">
-            <div class="project-card-face" role="button" tabindex="0" aria-expanded="false" aria-controls="case-2" onclick="toggleCase('proj-2')" onkeydown="handleCardKey(event,'proj-2')">
+          <article class="project-card fade-up" id="proj-3">
+            <div class="project-card-face" role="button" tabindex="0" aria-expanded="false" aria-controls="case-3" onclick="toggleCase('proj-3')" onkeydown="handleCardKey(event,'proj-3')">
               <div class="project-card-body">
                 <p class="project-eyebrow">MLOps · Production · Architecture</p>
                 <h3 class="project-title">End-to-End Demand Forecasting System</h3>
@@ -435,13 +474,13 @@
                 <a href="https://demandforecastt.streamlit.app/" class="project-link" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">Live App<span class="link-arrow"><svg viewBox="0 0 13 13" fill="none" style="width:11px;height:11px;"><path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
                 <a href="https://github.com/faheem-afk/Demand_Forecasting_frontend" class="project-link" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">GitHub<span class="link-arrow"><svg viewBox="0 0 13 13" fill="none" style="width:11px;height:11px;"><path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
                 <span class="project-date">Jul – Aug 2025</span>
-                <button class="expand-btn" onclick="event.stopPropagation(); toggleCase('proj-2')" aria-label="Toggle case study">
+                <button class="expand-btn" onclick="event.stopPropagation(); toggleCase('proj-3')" aria-label="Toggle case study">
                   <span class="expand-icon"><svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,2.5 4,5.5 7,2.5"/></svg></span>
                   Case study
                 </button>
               </div>
             </div>
-            <div class="case-study" id="case-2" aria-hidden="true">
+            <div class="case-study" id="case-3" aria-hidden="true">
               <div class="case-study-inner">
                 <div class="cs-block"><span class="cs-label">Problem</span><p class="cs-text">Most forecasting projects end at a Jupyter notebook — a trained model that lives on someone's laptop and gets manually re-run. The goal here was to build a system — something production-ready, modular, and deployable by anyone with a single command.</p></div>
                 <div class="cs-block"><span class="cs-label">Challenges</span><p class="cs-text">Designing the service boundaries correctly. The temptation is to couple the model and the API — it's simpler to build. But coupling means you can't update the model without touching the serving layer. Getting the single-responsibility split right required thinking about how the system would change over time, not just how it would work on day one.</p></div>
@@ -452,8 +491,8 @@
             </div>
           </article>
 
-          <article class="project-card fade-up" id="proj-3">
-            <div class="project-card-face" role="button" tabindex="0" aria-expanded="false" aria-controls="case-3" onclick="toggleCase('proj-3')" onkeydown="handleCardKey(event,'proj-3')">
+          <article class="project-card fade-up" id="proj-4">
+            <div class="project-card-face" role="button" tabindex="0" aria-expanded="false" aria-controls="case-4" onclick="toggleCase('proj-4')" onkeydown="handleCardKey(event,'proj-4')">
               <div class="project-card-body">
                 <p class="project-eyebrow">MSc Dissertation · Time-Series · Research</p>
                 <h3 class="project-title">5G Network Energy Consumption Forecasting</h3>
@@ -471,13 +510,13 @@
               <div class="project-card-actions">
                 <a href="https://github.com/faheem-afk/5G-Energy-Consumption-Prediction" class="project-link" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">GitHub<span class="link-arrow"><svg viewBox="0 0 13 13" fill="none" style="width:11px;height:11px;"><path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
                 <span class="project-date">Feb – Jul 2025</span>
-                <button class="expand-btn" onclick="event.stopPropagation(); toggleCase('proj-3')" aria-label="Toggle case study">
+                <button class="expand-btn" onclick="event.stopPropagation(); toggleCase('proj-4')" aria-label="Toggle case study">
                   <span class="expand-icon"><svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,2.5 4,5.5 7,2.5"/></svg></span>
                   Case study
                 </button>
               </div>
             </div>
-            <div class="case-study" id="case-3" aria-hidden="true">
+            <div class="case-study" id="case-4" aria-hidden="true">
               <div class="case-study-inner">
                 <div class="cs-block"><span class="cs-label">Problem</span><p class="cs-text">5G network infrastructure consumes significantly more energy than previous generations. Operators need to predict consumption patterns across base stations — both to manage costs and to identify efficiency opportunities. The dissertation asked: can we accurately forecast energy consumption at the base station level, with statistically rigorous results?</p></div>
                 <div class="cs-block"><span class="cs-label">Challenges</span><p class="cs-text">The data leakage problem. In a dataset with 50+ base stations, naïve cross-validation would train on observations from the same station it tests on — producing optimistic results that don't reflect real-world deployment. Solving this correctly was the difference between publishable results and inflated ones.</p></div>
@@ -614,11 +653,11 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const idx = Array.from(projectCards).indexOf(entry.target);
-          setTimeout(() => entry.target.classList.add('visible'), idx * 180);
+          setTimeout(() => entry.target.classList.add('visible'), idx * 120);
           projectObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.06 });
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
     projectCards.forEach(card => projectObserver.observe(card));
 
     const fadeObserver = new IntersectionObserver((entries) => {
@@ -628,10 +667,10 @@
           fadeObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.07 });
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('#hero .fade-up').forEach((el, i) => {
-      setTimeout(() => el.classList.add('visible'), 180 + i * 200);
+      setTimeout(() => el.classList.add('visible'), 120 + i * 160);
     });
 
     fadeEls.forEach(el => {
