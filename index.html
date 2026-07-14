@@ -29,17 +29,18 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230A6E60'/><text x='16' y='22' font-family='sans-serif' font-size='16' font-weight='700' fill='white' text-anchor='middle'>F</text></svg>">
 
   <style>
+    /* Design tokens: all visual constants live here so changes propagate everywhere */
     :root {
       --color-base:         #F7F6F2;
       --color-surface:      #FFFFFF;
       --color-text-primary: #111110;
       --color-text-muted:   #6B6A66;
       --color-text-hint:    #9A9994;
-      --color-accent:       #0A6E60;
+      --color-accent:       #0A6E60; /* teal brand colour */
       --color-accent-hover: #085C50;
-      --color-accent-soft:  #E8F4F1;
+      --color-accent-soft:  #E8F4F1; /* tint for chip backgrounds */
       --color-border:       #E4E3DC;
-      --color-dark:         #111110;
+      --color-dark:         #111110; /* used for the dark contact block */
       --font-display: 'Plus Jakarta Sans', sans-serif;
       --font-body:    'Inter', sans-serif;
       --font-mono:    'JetBrains Mono', monospace;
@@ -47,14 +48,14 @@
       --text-sm:   13px;
       --text-base: 15px;
       --text-lg:   17px;
-      --space-7: 80px;
-      --space-8: 120px;
+      --space-7: 80px;  /* section padding at tablet breakpoint */
+      --space-8: 120px; /* section padding at desktop */
       --max-width:   1160px;
       --radius-sm:   6px;
       --radius-md:   10px;
       --radius-lg:   14px;
       --radius-xl:   20px;
-      --ease-out:       cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out:       cubic-bezier(0.16, 1, 0.3, 1); /* spring-like deceleration for UI motion */
       --duration-fast:  0.2s;
       --duration-base:  0.4s;
       --nav-height: 60px;
@@ -75,6 +76,7 @@
     button { font-family: var(--font-body); cursor: pointer; border: none; background: none; }
     :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 3px; }
 
+    /* Skip link is visually hidden until focused, for keyboard and screen-reader accessibility */
     .skip-link {
       position: absolute; top: -100%; left: 16px;
       background: var(--color-accent); color: #fff;
@@ -86,6 +88,7 @@
 
     .container { max-width: var(--max-width); margin: 0 auto; padding: 0 40px; }
 
+    /* Scroll-triggered entrance animation: JS adds .visible via IntersectionObserver */
     .fade-up {
       opacity: 0;
       transform: translateY(40px);
@@ -94,10 +97,12 @@
       will-change: opacity, transform;
     }
     .fade-up.visible       { opacity: 1; transform: translateY(0); }
+    /* Staggered delay classes so sibling elements animate in sequence */
     .fade-up.delay-1       { transition-delay: 0.10s; }
     .fade-up.delay-2       { transition-delay: 0.22s; }
     .fade-up.delay-3       { transition-delay: 0.38s; }
     .fade-up.delay-4       { transition-delay: 0.54s; }
+    /* Respect the OS-level "reduce motion" preference */
     @media (prefers-reduced-motion: reduce) {
       .fade-up, .fade-up.visible { opacity: 1; transform: none; transition: none; }
       * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -109,6 +114,7 @@
     .section-subtitle { font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.65; }
     .section-header { margin-bottom: 48px; }
 
+    /* Frosted-glass fixed nav: opacity < 1 so page content shows through when scrolling */
     .nav {
       position: fixed; top: 0; left: 0; right: 0;
       height: var(--nav-height);
@@ -117,12 +123,14 @@
       border-bottom: 1px solid var(--color-border);
       z-index: 100; transition: box-shadow var(--duration-fast);
     }
+    /* Subtle shadow added once the user scrolls past the hero fold */
     .nav.scrolled { box-shadow: 0 1px 24px rgba(0,0,0,0.06); }
     .nav-inner { max-width: var(--max-width); margin: 0 auto; padding: 0 40px; height: 100%; display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--color-text-primary); letter-spacing: -0.3px; transition: color var(--duration-fast); }
     .nav-logo:hover { color: var(--color-accent); }
     .nav-links { display: flex; align-items: center; gap: 32px; }
     .nav-link { font-size: var(--text-sm); font-weight: 500; color: var(--color-text-muted); transition: color var(--duration-fast); position: relative; padding-bottom: 2px; }
+    /* Animated underline: starts hidden (scaleX 0) and grows left-to-right on hover or active state */
     .nav-link::after { content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 1.5px; background: var(--color-accent); transform: scaleX(0); transform-origin: left; transition: transform var(--duration-fast) var(--ease-out); }
     .nav-link:hover { color: var(--color-text-primary); }
     .nav-link.active { color: var(--color-text-primary); }
@@ -132,6 +140,7 @@
 
     .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; padding: 6px 4px; background: none; border: none; cursor: pointer; }
     .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--color-text-primary); transition: transform var(--duration-fast) var(--ease-out), opacity var(--duration-fast); transform-origin: center; }
+    /* Three-bar icon morphs into an X when the mobile menu is open */
     .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
@@ -193,6 +202,7 @@
     .expand-icon svg { width: 8px; height: 8px; transition: transform var(--duration-base) var(--ease-out); }
     .project-card.expanded .expand-icon svg { transform: rotate(180deg); }
 
+    /* max-height animation trick: CSS cannot animate height auto, so a large fixed max-height is used instead */
     .case-study { max-height: 0; overflow: hidden; transition: max-height 0.48s var(--ease-out); }
     .case-study.open { max-height: 1400px; border-top: 1px solid var(--color-border); }
     .case-study-inner { padding: 32px 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
@@ -713,12 +723,14 @@
   </footer>
 
   <script>
+    /* Force scroll to top on load; prevents browsers from restoring mid-page position after refresh */
     if (history.scrollRestoration) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
 
     const fadeEls = document.querySelectorAll('.fade-up');
     const projectCards = document.querySelectorAll('.project-card.fade-up');
 
+    /* Project cards get a per-card stagger delay based on their DOM index */
     const projectObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -730,6 +742,7 @@
     }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
     projectCards.forEach(card => projectObserver.observe(card));
 
+    /* General fade observer for all non-hero, non-project-card elements */
     const fadeObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -739,6 +752,7 @@
       });
     }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
 
+    /* Hero elements animate immediately on page load rather than waiting for scroll */
     document.querySelectorAll('#hero .fade-up').forEach((el, i) => {
       setTimeout(() => el.classList.add('visible'), 120 + i * 160);
     });
@@ -749,11 +763,13 @@
       }
     });
 
+    /* Add .scrolled to nav once user scrolls past the hero eyebrow area */
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
 
+    /* Active nav link tracks which section is centred in the viewport */
     const sectionIds = ['about', 'projects', 'experience', 'skills', 'education', 'contact'];
     const navLinks = document.querySelectorAll('.nav-link');
     const sectionObserver = new IntersectionObserver((entries) => {
@@ -770,6 +786,7 @@
       if (el) sectionObserver.observe(el);
     });
 
+    /* Hamburger toggles both its own open state and the mobile nav panel */
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('nav-mobile');
     hamburger.addEventListener('click', () => {
@@ -778,6 +795,7 @@
       hamburger.setAttribute('aria-expanded', String(isOpen));
       mobileNav.setAttribute('aria-hidden', String(!isOpen));
     });
+    /* Clicking any mobile nav link closes the menu automatically */
     mobileNav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         hamburger.classList.remove('open');
@@ -787,6 +805,7 @@
       });
     });
 
+    /* Toggles the expandable case-study panel on a project card */
     function toggleCase(cardId) {
       const card  = document.getElementById(cardId);
       const panel = card.querySelector('.case-study');
@@ -797,6 +816,7 @@
       panel.setAttribute('aria-hidden', String(!isOpen));
     }
 
+    /* Keyboard accessibility for project card faces (role="button") */
     function handleCardKey(event, cardId) {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
