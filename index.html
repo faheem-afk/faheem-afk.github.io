@@ -390,6 +390,42 @@
         </div>
         <div class="projects-stack">
 
+          <article class="project-card fade-up" id="proj-rag">
+            <div class="project-card-face" role="button" tabindex="0" aria-expanded="false" aria-controls="case-rag" onclick="toggleCase('proj-rag')" onkeydown="handleCardKey(event,'proj-rag')">
+              <div class="project-card-body">
+                <p class="project-eyebrow">GenAI · RAG Pipeline · LLM Application</p>
+                <h3 class="project-title">RAG Document Q&amp;A System &mdash; Full-Stack LLM Application</h3>
+                <p class="project-desc">Built an end-to-end Retrieval-Augmented Generation pipeline with token-aware chunking (256-token limit) and FAISS vector search (cosine similarity), returning source citations with every answer. Served via a FastAPI backend (3 REST endpoints, Pydantic validation) with a two-layer no-answer guard that suppresses hallucination on out-of-context queries. Logged queries to SQLite with a usage-analytics endpoint and a Streamlit chat dashboard, validated across 30+ test queries.</p>
+                <div class="project-metrics">
+                  <span class="metric">256-token chunking</span>
+                  <span class="metric">3 REST endpoints</span>
+                  <span class="metric">30+ test queries</span>
+                </div>
+                <div class="project-tools">
+                  <span class="chip chip-accent">Python</span><span class="chip chip-accent">FastAPI</span><span class="chip chip-accent">FAISS</span>
+                  <span class="chip chip-gray">Sentence-Transformers</span><span class="chip chip-gray">LLM (Groq)</span><span class="chip chip-gray">SQLite</span><span class="chip chip-gray">Streamlit</span>
+                </div>
+              </div>
+              <div class="project-card-actions">
+                <a href="https://github.com/faheem-bhat2025/Rag_document_qa" class="project-link" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">GitHub<span class="link-arrow"><svg viewBox="0 0 13 13" fill="none" style="width:11px;height:11px;"><path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+                <span class="project-date">Jun 2026</span>
+                <button class="expand-btn" onclick="event.stopPropagation(); toggleCase('proj-rag')" aria-label="Toggle case study">
+                  <span class="expand-icon"><svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,2.5 4,5.5 7,2.5"/></svg></span>
+                  Case study
+                </button>
+              </div>
+            </div>
+            <div class="case-study" id="case-rag" aria-hidden="true">
+              <div class="case-study-inner">
+                <div class="cs-block"><span class="cs-label">Problem</span><p class="cs-text">Most document Q&amp;A demos are notebook prototypes that hallucinate confidently on questions outside their source material. The goal was a full-stack RAG application that answers strictly from a document corpus, cites its sources, and explicitly declines to answer when the context doesn't support a confident response.</p></div>
+                <div class="cs-block"><span class="cs-label">Challenges</span><p class="cs-text">Balancing chunk size against retrieval precision &mdash; chunks too large dilute relevance, too small lose context. A two-layer no-answer guard (retrieval-confidence check plus an LLM-level refusal path) was needed to stop the model from hallucinating plausible-sounding answers on out-of-context queries.</p></div>
+                <div class="cs-block cs-block-full"><span class="cs-label">Process</span><p class="cs-process">Document ingestion → token-aware chunking (256-token limit) → embedding (Sentence-Transformers) → FAISS vector index (cosine similarity) → FastAPI serving layer (3 endpoints, Pydantic validation) → two-layer no-answer guard → SQLite query logging → Streamlit chat dashboard</p></div>
+                <div class="cs-block"><span class="cs-label">Key Insight</span><p class="cs-text">The two-layer no-answer guard &mdash; a retrieval-confidence threshold combined with an explicit LLM-level refusal path &mdash; suppressed hallucination more reliably than prompt engineering alone; source citations on every answer made responses independently verifiable rather than requiring trust in the model.</p></div>
+                <div class="cs-block"><span class="cs-label">Value</span><p class="cs-text">End-to-end RAG pipeline with citation-backed answers · FastAPI backend with 3 REST endpoints and Pydantic validation · Two-layer no-answer guard suppressing hallucination · Usage-analytics endpoint tracking frequency, no-answer rate, and latency · Validated across 30+ test queries.</p></div>
+              </div>
+            </div>
+          </article>
+
           <article class="project-card fade-up" id="proj-ce">
             <div class="project-card-face" role="button" tabindex="0" aria-expanded="false" aria-controls="case-ce" onclick="toggleCase('proj-ce')" onkeydown="handleCardKey(event,'proj-ce')">
               <div class="project-card-body">
@@ -460,6 +496,43 @@
                 <div class="cs-block cs-block-full"><span class="cs-label">Process</span><p class="cs-process">Data cleaning (corrupted dates, cart-update duplicates, misclassifications) → Three-way merge (orders + products + factories) → Percentile analysis → Custom Z vs t-distribution confidence framework → Composite efficiency score (lead time + delivery variability) → 16 route rankings → Hypothesis testing (Same Day vs Standard Class) → Streamlit dashboard</p></div>
                 <div class="cs-block"><span class="cs-label">Key Insight</span><p class="cs-text">Hypothesis testing confirmed no significant difference in delivery time between Same Day and Standard Class (13.3 vs 13.1 days, p &gt; 0.05) — disproving the assumed speed premium and making a data-backed case to eliminate the ~30% cost premium on expedited orders.</p></div>
                 <div class="cs-block"><span class="cs-label">Value</span><p class="cs-text">8,549 shipments analysed · 16 factory→region routes ranked by composite efficiency · Same Day shipping speed premium disproved (p &gt; 0.05) · ~30% cost premium on expedited orders flagged as eliminable · Statistically rigorous confidence framework with automatic Z vs t selection · Fully interactive Streamlit dashboard.</p></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card fade-up" id="proj-hhs">
+            <div class="project-card-face" role="button" tabindex="0" aria-expanded="false" aria-controls="case-hhs" onclick="toggleCase('proj-hhs')" onkeydown="handleCardKey(event,'proj-hhs')">
+              <div class="project-card-body">
+                <p class="project-eyebrow">Healthcare Capacity Analytics · Time-Series · Dashboard</p>
+                <h3 class="project-title">System Capacity &amp; Care Load Analytics for Unaccompanied Children</h3>
+                <p class="project-desc">Analysed 720 daily CBP&ndash;HHS operational reports (Jan 2023 &ndash; Dec 2025) to build a structured capacity-monitoring framework for the federal Unaccompanied Children care pipeline. Derived 4 core capacity metrics and 5 stakeholder KPIs, then applied rolling-window analysis to flag sustained strain and relief periods. Combined system load fell from a peak of ~11,760 children in December 2023 to under 2,100 by August 2025, tracked in a live Streamlit monitoring dashboard.</p>
+                <div class="project-metrics">
+                  <span class="metric">720 daily reports</span>
+                  <span class="metric">~71% load decline</span>
+                  <span class="metric">5 KPIs delivered</span>
+                </div>
+                <div class="project-tools">
+                  <span class="chip chip-accent">Python</span><span class="chip chip-accent">Pandas</span><span class="chip chip-accent">NumPy</span>
+                  <span class="chip chip-gray">Time-Series Analysis</span><span class="chip chip-gray">Rolling-Window Analysis</span><span class="chip chip-gray">Streamlit</span>
+                </div>
+              </div>
+              <div class="project-card-actions">
+                <a href="https://hhs-children.streamlit.app/" class="project-link" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">Live App<span class="link-arrow"><svg viewBox="0 0 13 13" fill="none" style="width:11px;height:11px;"><path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+                <a href="https://github.com/faheem-bhat2025/HHS" class="project-link" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">GitHub<span class="link-arrow"><svg viewBox="0 0 13 13" fill="none" style="width:11px;height:11px;"><path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+                <span class="project-date">Dec 2025 &ndash; Jan 2026</span>
+                <button class="expand-btn" onclick="event.stopPropagation(); toggleCase('proj-hhs')" aria-label="Toggle case study">
+                  <span class="expand-icon"><svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,2.5 4,5.5 7,2.5"/></svg></span>
+                  Case study
+                </button>
+              </div>
+            </div>
+            <div class="case-study" id="case-hhs" aria-hidden="true">
+              <div class="case-study-inner">
+                <div class="cs-block"><span class="cs-label">Problem</span><p class="cs-text">Daily operational data flows across the CBP&ndash;HHS Unaccompanied Children care pipeline, but there was no centralised analytical framework to continuously assess total system load, the balance between inflow and outflow, or when the system was under sustained strain versus relief &mdash; leaving capacity decisions reactive rather than proactive.</p></div>
+                <div class="cs-block"><span class="cs-label">Challenges</span><p class="cs-text">Reporting cadence isn't a strict daily feed &mdash; Friday and Saturday reports are almost never published, a structural artifact of the source cycle rather than missing data. Rolling-window calculations had to operate on report sequence rather than naive calendar days to avoid distorting the strain/relief signal. Two logical constraints (transfers ≤ same-day custody, discharges ≤ same-day care) were tested directly against the data rather than assumed.</p></div>
+                <div class="cs-block cs-block-full"><span class="cs-label">Process</span><p class="cs-process">Data ingestion &amp; cleaning (720 reports, thousands-separator parsing, calendar indexing) → constraint validation (transfer/discharge logic checks) → 4 derived capacity metrics (Total System Load, Net Daily Intake, Growth Rate, Cumulative Backlog) → rolling 7- and 14-report averages → percentile-based strain/relief window detection → 5 stakeholder KPIs → Streamlit monitoring dashboard</p></div>
+                <div class="cs-block"><span class="cs-label">Key Insight</span><p class="cs-text">A 7-report rolling average crossing into the historical top or bottom quartile, sustained for 10+ consecutive reports, cleanly separated genuine strain/relief periods from day-to-day noise &mdash; identifying one dominant 111-report strain window (Aug 2023&ndash;Jan 2024) and an ongoing 117-report relief window (Jun&ndash;Dec 2025) that a simple day-over-day view would have missed.</p></div>
+                <div class="cs-block"><span class="cs-label">Value</span><p class="cs-text">4 capacity metrics and 5 KPIs delivered from 720 daily reports · Combined system load decline of ~71% quantified (2023 average → 2025 average) · Sustained strain and relief windows identified via percentile-based rolling analysis · Discharge Offset Ratio tracked as an early-warning backlog indicator · Live Streamlit dashboard for ongoing monitoring.</p></div>
               </div>
             </div>
           </article>
@@ -575,6 +648,43 @@
             </div>
           </article>
 
+          <article class="project-card fade-up" id="proj-sky">
+            <div class="project-card-face" role="button" tabindex="0" aria-expanded="false" aria-controls="case-sky" onclick="toggleCase('proj-sky')" onkeydown="handleCardKey(event,'proj-sky')">
+              <div class="project-card-body">
+                <p class="project-eyebrow">Predictive Modelling · Profit Optimisation · Dashboard</p>
+                <h3 class="project-title">Restaurant Profit Optimisation &mdash; SkyCity Auckland</h3>
+                <p class="project-desc">Built and evaluated 4 models (Linear Regression, Random Forest, Gradient Boosting, XGBoost) to forecast restaurant profit from channel mix and commission structure across 1,696 restaurants; XGBoost explained 98.8% of profit variance (MAE $464). Built a scenario simulator and grid-search optimisation layer into a live Streamlit dashboard, identifying a median 21.7% profit uplift achievable through channel-mix rebalancing alone, and derived a 32.6% break-even commission benchmark showing ~29% of restaurants losing money on aggregator orders at current rates.</p>
+                <div class="project-metrics">
+                  <span class="metric">98.8% variance explained</span>
+                  <span class="metric">21.7% median profit uplift</span>
+                  <span class="metric">1,696 restaurants</span>
+                </div>
+                <div class="project-tools">
+                  <span class="chip chip-accent">Python</span><span class="chip chip-accent">XGBoost</span><span class="chip chip-accent">Scikit-learn</span>
+                  <span class="chip chip-gray">Streamlit</span><span class="chip chip-gray">Grid Search</span>
+                </div>
+              </div>
+              <div class="project-card-actions">
+                <a href="https://skycityrestaurants.streamlit.app/" class="project-link" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">Live App<span class="link-arrow"><svg viewBox="0 0 13 13" fill="none" style="width:11px;height:11px;"><path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+                <a href="https://github.com/faheem-bhat2025/SkyCity_Restaurants" class="project-link" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">GitHub<span class="link-arrow"><svg viewBox="0 0 13 13" fill="none" style="width:11px;height:11px;"><path d="M2.5 10.5L10.5 2.5M10.5 2.5H4.5M10.5 2.5V8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+                <span class="project-date">May &ndash; Jun 2025</span>
+                <button class="expand-btn" onclick="event.stopPropagation(); toggleCase('proj-sky')" aria-label="Toggle case study">
+                  <span class="expand-icon"><svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,2.5 4,5.5 7,2.5"/></svg></span>
+                  Case study
+                </button>
+              </div>
+            </div>
+            <div class="case-study" id="case-sky" aria-hidden="true">
+              <div class="case-study-inner">
+                <div class="cs-block"><span class="cs-label">Problem</span><p class="cs-text">Restaurants selling through third-party aggregators pay a commission on every order, but have no easy way to know whether their current channel mix (direct vs. aggregator) is actually profitable, or what mix would maximise profit given their specific cost structure. The goal was a tool that predicts profit from channel mix and commission terms, and recommends a better mix.</p></div>
+                <div class="cs-block"><span class="cs-label">Challenges</span><p class="cs-text">Choosing the right model meant balancing accuracy against interpretability for a business audience &mdash; a black-box model with no way to simulate &ldquo;what if 10% of orders shifted to direct&rdquo; wouldn't be actionable. Building a grid-search optimisation layer on top of the trained model, rather than just a static prediction, was necessary to turn a forecasting exercise into a decision-support tool.</p></div>
+                <div class="cs-block cs-block-full"><span class="cs-label">Process</span><p class="cs-process">Data cleaning &amp; feature preparation (channel mix, commission structure) → model benchmarking (Linear Regression, Random Forest, Gradient Boosting, XGBoost) → XGBoost selected (98.8% variance explained, MAE $464) → grid-search optimisation layer for channel-mix rebalancing → break-even commission benchmarking → Streamlit scenario simulator dashboard</p></div>
+                <div class="cs-block"><span class="cs-label">Key Insight</span><p class="cs-text">A 32.6% break-even commission benchmark revealed that roughly 29% of restaurants in the dataset were losing money on aggregator orders at their current commission rates &mdash; a concrete, model-derived negotiation lever that channel-mix intuition alone wouldn't have surfaced. Rebalancing channel mix alone, without any pricing change, produced a median 21.7% profit uplift.</p></div>
+                <div class="cs-block"><span class="cs-label">Value</span><p class="cs-text">4 models benchmarked, XGBoost selected at 98.8% variance explained (MAE $464) · Median 21.7% profit uplift identified through channel-mix rebalancing · 32.6% break-even commission benchmark derived · ~29% of restaurants flagged as unprofitable on aggregator orders at current rates · Live Streamlit scenario simulator with grid-search optimisation.</p></div>
+              </div>
+            </div>
+          </article>
+
           <article class="project-card fade-up" id="proj-2">
             <div class="project-card-face" role="button" tabindex="0" aria-expanded="false" aria-controls="case-2" onclick="toggleCase('proj-2')" onkeydown="handleCardKey(event,'proj-2')">
               <div class="project-card-body">
@@ -625,11 +735,31 @@
           <div class="exp-header">
             <div>
               <div class="exp-role">Data Analyst</div>
+              <div class="exp-company">Kingston Technology · Remote</div>
+            </div>
+            <div class="exp-meta">
+              <div class="exp-meta-row">
+                <div class="exp-date">Aug 2025 – Present</div>
+              </div>
+            </div>
+          </div>
+          <ul class="exp-list">
+            <li>Owned Power BI dashboards tracking regional inventory and shipment fulfillment across 6 distribution centers; evolved the role from internship-level dashboard support into full independent ownership.</li>
+            <li>Wrote and optimised T-SQL queries (CTEs, window functions) to handle 10–15 ad hoc requests/week from Supply Chain and Sales Ops; cut average turnaround time by 35%.</li>
+            <li>Identified a recurring stockout pattern in one flash storage product line; contributed to a forecasting fix that reduced backorders by 18%.</li>
+            <li>Led data cleaning and reconciliation across 3 ERP/MES source systems; reduced discrepancy tickets by 25%.</li>
+            <li>Co-presented quarterly sales-by-region findings to stakeholders alongside a Senior Analyst.</li>
+          </ul>
+        </div>
+        <div class="exp-card fade-up delay-2">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Data Analyst Intern</div>
               <div class="exp-company">Unified Mentor Pvt Ltd · Remote</div>
             </div>
             <div class="exp-meta">
               <div class="exp-meta-row">
-                <div class="exp-date">Mar 2025 – Present · part-time Mar–Sep 2025 during MSc</div>
+                <div class="exp-date">Jan 2025 – Jun 2025</div>
               </div>
             </div>
           </div>
@@ -639,6 +769,9 @@
             <li>Engineered a composite engagement score from 4 signals (activity, tenure, balance, product holdings); built a Streamlit dashboard enabling stakeholder self-service segment exploration across 10K customers with filters by geography and risk tier.</li>
             <li>Analysed 8,549 shipments across 5 factories, 4 regions, and 4 shipping modes; ranked all 16 factory-to-region routes by composite efficiency score (lead time + delivery variability); surfacing the highest-variance routes as primary targets for logistics cost optimisation.</li>
             <li>Disproved the assumed speed premium of Same Day shipping: hypothesis testing confirmed no significant difference vs Standard Class (13.3 vs 13.1 days, p &gt; 0.05); surfacing a data-backed case to eliminate the ~30% cost premium on expedited orders.</li>
+            <li>Built and evaluated 4 models (Linear Regression, Random Forest, Gradient Boosting, XGBoost) to forecast restaurant profit from channel mix and commission structure across 1,696 restaurants for SkyCity Auckland; XGBoost explained 98.8% of profit variance (MAE $464).</li>
+            <li>Built a scenario simulator and grid-search optimisation layer into a live Streamlit dashboard; identified a median 21.7% profit uplift achievable through channel-mix rebalancing alone.</li>
+            <li>Derived a break-even commission benchmark (32.6%) showing ~29% of restaurants losing money on aggregator orders at current rates; giving stakeholders a direct negotiation lever.</li>
           </ul>
         </div>
       </div>
@@ -652,12 +785,13 @@
           <p class="section-subtitle">No progress bars. No fake ratings. Just the tools I actually use.</p>
         </div>
         <div class="skills-grid">
-          <div class="skill-group fade-up delay-1"><div class="skill-group-title">SQL</div><div class="skill-chips"><span class="chip chip-accent">SQL</span><span class="chip chip-accent">PostgreSQL</span><span class="chip chip-accent">MySQL</span><span class="chip chip-accent">SQL Server</span><span class="chip chip-gray">CTEs</span><span class="chip chip-gray">Window Functions</span><span class="chip chip-gray">Query Optimisation</span></div></div>
-          <div class="skill-group fade-up delay-1"><div class="skill-group-title">Python</div><div class="skill-chips"><span class="chip chip-accent">Pandas</span><span class="chip chip-accent">NumPy</span><span class="chip chip-gray">Matplotlib</span><span class="chip chip-gray">Seaborn</span><span class="chip chip-gray">Plotly</span></div></div>
-          <div class="skill-group fade-up delay-2"><div class="skill-group-title">Visualisation &amp; BI</div><div class="skill-chips"><span class="chip chip-accent">Power BI</span><span class="chip chip-accent">DAX</span><span class="chip chip-accent">Excel</span><span class="chip chip-gray">Star Schema</span><span class="chip chip-gray">Dashboard Design</span><span class="chip chip-gray">Drill-through</span><span class="chip chip-gray">KPI Tracking</span></div></div>
-          <div class="skill-group fade-up delay-2"><div class="skill-group-title">Analytics</div><div class="skill-chips"><span class="chip chip-accent">EDA</span><span class="chip chip-accent">Hypothesis Testing</span><span class="chip chip-accent">A/B Testing</span><span class="chip chip-accent">Cohort Analysis</span><span class="chip chip-gray">Time-Series</span><span class="chip chip-gray">Regression</span><span class="chip chip-gray">Market Basket Analysis</span><span class="chip chip-gray">ETL</span><span class="chip chip-gray">Data Pipeline</span></div></div>
-          <div class="skill-group fade-up delay-3"><div class="skill-group-title">ML &amp; Modelling</div><div class="skill-chips"><span class="chip chip-accent">XGBoost</span><span class="chip chip-accent">Scikit-learn</span><span class="chip chip-accent">Feature Engineering</span></div></div>
-          <div class="skill-group fade-up delay-3"><div class="skill-group-title">Tools</div><div class="skill-chips"><span class="chip chip-gray">Docker</span><span class="chip chip-gray">GitHub</span><span class="chip chip-gray">Streamlit</span><span class="chip chip-gray">AWS</span></div></div>
+          <div class="skill-group fade-up delay-1"><div class="skill-group-title">SQL</div><div class="skill-chips"><span class="chip chip-accent">SQL</span><span class="chip chip-accent">PostgreSQL</span><span class="chip chip-accent">MySQL</span><span class="chip chip-accent">SQL Server</span><span class="chip chip-gray">Joins</span><span class="chip chip-gray">CTEs</span><span class="chip chip-gray">Window Functions</span><span class="chip chip-gray">Aggregations</span><span class="chip chip-gray">Indexing</span><span class="chip chip-gray">Query Optimisation</span><span class="chip chip-gray">Code Review</span></div></div>
+          <div class="skill-group fade-up delay-1"><div class="skill-group-title">Python</div><div class="skill-chips"><span class="chip chip-accent">Pandas</span><span class="chip chip-accent">NumPy</span><span class="chip chip-gray">Matplotlib</span><span class="chip chip-gray">Seaborn</span><span class="chip chip-gray">Plotly</span><span class="chip chip-gray">Jupyter Notebook</span></div></div>
+          <div class="skill-group fade-up delay-2"><div class="skill-group-title">Visualisation &amp; BI</div><div class="skill-chips"><span class="chip chip-accent">Power BI</span><span class="chip chip-accent">DAX</span><span class="chip chip-accent">Excel</span><span class="chip chip-gray">Data Visualization</span><span class="chip chip-gray">Data Modeling</span><span class="chip chip-gray">Star Schema</span><span class="chip chip-gray">Data Warehousing</span><span class="chip chip-gray">Dashboard Design</span><span class="chip chip-gray">Drill-through</span><span class="chip chip-gray">KPI Tracking</span><span class="chip chip-gray">Slicers</span></div></div>
+          <div class="skill-group fade-up delay-2"><div class="skill-group-title">Analytics</div><div class="skill-chips"><span class="chip chip-accent">EDA</span><span class="chip chip-accent">Data Analysis</span><span class="chip chip-accent">Hypothesis Testing</span><span class="chip chip-accent">A/B Testing</span><span class="chip chip-accent">Cohort Analysis</span><span class="chip chip-gray">Data Cleaning</span><span class="chip chip-gray">Data Validation</span><span class="chip chip-gray">Data Quality Assessment</span><span class="chip chip-gray">Statistical Testing</span><span class="chip chip-gray">Confidence Intervals</span><span class="chip chip-gray">Trend Analysis</span><span class="chip chip-gray">Time-Series</span><span class="chip chip-gray">Regression</span><span class="chip chip-gray">Market Basket Analysis</span><span class="chip chip-gray">Business Intelligence Reporting</span><span class="chip chip-gray">Data Storytelling</span><span class="chip chip-gray">ETL</span><span class="chip chip-gray">Data Pipeline</span></div></div>
+          <div class="skill-group fade-up delay-3"><div class="skill-group-title">ML &amp; Modelling</div><div class="skill-chips"><span class="chip chip-accent">Machine Learning</span><span class="chip chip-accent">Deep Learning</span><span class="chip chip-accent">Neural Networks</span><span class="chip chip-accent">XGBoost</span><span class="chip chip-accent">PyTorch</span><span class="chip chip-accent">TensorFlow</span><span class="chip chip-accent">Scikit-learn</span><span class="chip chip-gray">CNN</span><span class="chip chip-gray">RNN / LSTM / GRU</span><span class="chip chip-gray">Computer Vision</span><span class="chip chip-gray">Feature Engineering</span><span class="chip chip-gray">Hyperparameter Tuning</span><span class="chip chip-gray">Model Evaluation</span></div></div>
+          <div class="skill-group fade-up delay-3"><div class="skill-group-title">GenAI &amp; LLMs</div><div class="skill-chips"><span class="chip chip-accent">Generative AI</span><span class="chip chip-accent">LangChain</span><span class="chip chip-accent">RAG Pipelines</span><span class="chip chip-accent">LLMs</span><span class="chip chip-gray">LangGraph</span><span class="chip chip-gray">Natural Language Processing</span><span class="chip chip-gray">Transformers</span><span class="chip chip-gray">Fine-tuning</span><span class="chip chip-gray">Prompt Engineering</span><span class="chip chip-gray">Vector Search</span><span class="chip chip-gray">MCP Server &amp; Client Development</span><span class="chip chip-gray">Explainable AI</span><span class="chip chip-gray">Data Privacy</span></div></div>
+          <div class="skill-group fade-up delay-3"><div class="skill-group-title">Tools &amp; MLOps</div><div class="skill-chips"><span class="chip chip-gray">Docker</span><span class="chip chip-gray">Git</span><span class="chip chip-gray">GitHub</span><span class="chip chip-gray">GitHub Actions (CI/CD)</span><span class="chip chip-gray">Streamlit</span><span class="chip chip-gray">FastAPI</span><span class="chip chip-gray">Flask</span><span class="chip chip-gray">MLflow</span><span class="chip chip-gray">DVC</span><span class="chip chip-gray">REST APIs</span><span class="chip chip-gray">AWS</span><span class="chip chip-gray">BigQuery</span><span class="chip chip-gray">Neon</span></div></div>
         </div>
       </div>
     </section>
@@ -684,6 +818,7 @@
         <div class="fade-up delay-2">
           <p class="certs-label">Certifications</p>
           <div class="certs-row">
+            <div class="cert-chip">What is Data Science · IBM · 2025</div>
             <div class="cert-chip">SQL Advanced · HackerRank · 2024</div>
             <div class="cert-chip">Deep Learning Specialisation · iNeuron · 2024</div>
             <div class="cert-chip">Natural Language Processing · iNeuron · 2024</div>
